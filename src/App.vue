@@ -1,14 +1,18 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/" v-text="`Home`" /> |
+      <router-link to="/opinions" v-text="`Opiniones`" /> |
+      <router-link to="/opinions/manage" v-text="`Administración`" />
     </nav>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
+@import "@/assets/custom-vars";
+@import "~bootstrap/scss/bootstrap";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
