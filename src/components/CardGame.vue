@@ -1,30 +1,27 @@
 <template>
-  <div id="CardGame" class="text-primary">
-    {{ game }}
-    {{ game.background_image }}
-    {{ game.name }}
-    {{ game.rating }}
-    {{ game.released }}
-    {{ game.updated }}
-    <h1 v-text="`CardGame`" />
-  </div>
+  <article class="card">
+    <img :src="image" class="card-img-top" :alt="`Portada del juego ${name}`" />
+    <div class="card-body">
+      <h5 class="card-title" v-text="name" />
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" v-text="'Rating: ' + rating" />
+      <li class="list-group-item" v-text="'Released: ' + released" />
+      <li class="list-group-item" v-text="'Updated: ' + updated" />
+    </ul>
+    <div class="card-body">
+      <button type="button" class="btn btn-primary" v-text="`Opinar`" />
+    </div>
+  </article>
 </template>
 
 <script>
 export default {
   name: "CardGame",
-  props: {
-    game: {
-      type: Object,
-      require: true,
-      default() {
-        return {};
-      },
-    },
-  },
+  props: ["name", "rating", "released", "updated", "image"],
   // data(){}
   // computed: {},
-  // methods: {}
+  //   methods: {}
   // watch: {},
   // components: {},
   // mixins: [],

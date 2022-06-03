@@ -1,21 +1,29 @@
 <template>
-  <div class="home">
-    <card-game :game="games[0]" />
-  </div>
+  <section class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" v-for="(game, indexGame) in games" :key="indexGame">
+      <card-game
+        :name="game.name"
+        :rating="game.rating"
+        :released="game.released"
+        :updated="game.updated"
+        :image="game.background_image"
+      />
+    </div>
+  </section>
 </template>
 
 <script>
-import CardGame from '@/components/CardGame.vue'
-import { mapState } from 'vuex'
+import CardGame from "@/components/CardGame.vue";
+import { mapState } from "vuex";
 // @ is an alias to /src
 
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   components: {
-    CardGame
+    CardGame,
   },
-  computed:{
-    ...mapState(['games'])
-  }
-}
+  computed: {
+    ...mapState(["games"]),
+  },
+};
 </script>
