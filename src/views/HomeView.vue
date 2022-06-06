@@ -15,7 +15,7 @@
         :buttonModal="buttonModal"
       />
     </div>
-    <modal-with-form :nameGame="titleModal" />
+    <modal-with-form :idModal="idModal" :nameGame="titleModal" />
   </section>
 </template>
 <script>
@@ -31,12 +31,15 @@ export default {
   },
   data() {
     return {
-      buttonModal: `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Opinar</button>`,
+      idModal:'ModalWithForm',
       titleModal: "",
     };
   },
   computed: {
     ...mapState(["games"]),
+    buttonModal(){
+      return `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#${this.idModal}">Opinar</button>`
+    },
   },
   methods: {
     changeTitleModal(name) {

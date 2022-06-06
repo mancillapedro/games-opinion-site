@@ -1,16 +1,15 @@
 <template>
   <div
     class="modal fade"
-    id="exampleModal"
+    :id="idModal"
     tabindex="-1"
-    aria-labelledby="exampleModalLabel"
+    :aria-labelledby="idModal + 'Label'"
     aria-hidden="true"
   >
     <div class="modal-dialog">
-
-      <form class="modal-content" @submit="addOpinion">
+      <form class="modal-content" @submit.prevent="addOpinion">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel" v-text="titleModal" />
+          <h5 class="modal-title" :id="idModal + 'Label'" v-text="titleModal" />
           <button
             type="button"
             class="btn-close"
@@ -18,38 +17,9 @@
             aria-label="Close"
           />
         </div>
-
         <div class="modal-body">
-          <div class="mb-3">
-            <label
-              for="exampleFormControlInput1"
-              class="form-label"
-              v-text="`Nombre:`"
-            />
-            <input
-              type="text"
-              class="form-control"
-              id="exampleFormControlInput1"
-              v-model="nombre"
-              placeholder="Evan you"
-            />
-          </div>
-          <div class="mb-3">
-            <label
-              for="exampleFormControlTextarea1"
-              class="form-label"
-              v-text="`Opiniones:`"
-            />
-            <textarea
-              class="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-              v-model="opinion"
-              placeholder="Tu opinion debe ir aquí..."
-            />
-          </div>
+          <body-form :nombre.sync="nombre" :opinion.sync="opinion" />
         </div>
-
         <div class="modal-footer">
           <button
             type="button"
@@ -60,19 +30,20 @@
           <button type="submit" class="btn btn-primary" v-text="`Guardar`" />
         </div>
       </form>
-      
     </div>
   </div>
 </template>
 
 <script>
+import BodyForm from "./BodyForm.vue";
 export default {
+  components: { BodyForm },
   name: "ModalWithForm",
-  props: ["nameGame"],
+  props: ["nameGame", "idModal"],
   data() {
     return {
-      nombre: "",
-      opinion: "",
+      nombre: null,
+      opinion: null,
     };
   },
   computed: {
@@ -81,7 +52,14 @@ export default {
     },
   },
   methods: {
-    addOpinion() {},
+    validateInput() {
+      console.log(this.nombre, this.opinion);
+    },
+    addOpinion() {
+      console.log(this.nombre, this.opinion);
+      this.nombre = "";
+      this.opinion = "";
+    },
   },
   // watch: {},
   // components: {},
