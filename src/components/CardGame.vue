@@ -9,19 +9,21 @@
       <li class="list-group-item" v-text="'Released: ' + released" />
       <li class="list-group-item" v-text="'Updated: ' + updated" />
     </ul>
-    <div class="card-body">
-      <button type="button" class="btn btn-primary" v-text="`Opinar`" />
-    </div>
+    <div class="card-body" v-html="buttonModal" />
   </article>
 </template>
 
 <script>
 export default {
   name: "CardGame",
-  props: ["name", "rating", "released", "updated", "image"],
+  props: ["name", "rating", "released", "updated", "image", "buttonModal"],
   // data(){}
   // computed: {},
-  //   methods: {}
+  // methods: {
+  //   showPlus() {
+  //     this.$emit("clickOnButton", { name: this.name });
+  //   },
+  // },
   // watch: {},
   // components: {},
   // mixins: [],
