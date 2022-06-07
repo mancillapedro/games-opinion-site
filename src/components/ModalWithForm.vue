@@ -15,6 +15,8 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            @click.stop="clearInputs"
+
           />
         </div>
         <div class="modal-body">
@@ -26,6 +28,7 @@
             class="btn btn-secondary"
             data-bs-dismiss="modal"
             v-text="`Cerrar`"
+            @click.stop="clearInputs"
           />
           <button type="submit" class="btn btn-primary" v-text="`Guardar`" />
         </div>
@@ -55,10 +58,13 @@ export default {
     validateInput() {
       console.log(this.nombre, this.opinion);
     },
-    addOpinion() {
-      console.log(this.nombre, this.opinion);
+    clearInputs() {
       this.nombre = "";
       this.opinion = "";
+    },
+    addOpinion() {
+      console.log(this.nombre, this.opinion);
+      this.clearInputs();
     },
   },
   // watch: {},

@@ -1,5 +1,5 @@
 <template>
-  <ul id="BodyForm">
+  <ul class="list-unstyled" id="BodyForm">
     <li class="mb-3">
       <label
         for="exampleFormControlInput1"
@@ -65,10 +65,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-ul {
-  padding: 0;
-  li {
-    list-style: none;
-  }
-}
 </style>

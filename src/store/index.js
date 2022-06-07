@@ -8,7 +8,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     games: games,
-    opinions: []
+    opinions: [
+      { game: 'elgtaX', name: 'pedro', opinion: 'weno el juego' },
+      { game: 'portal', name: 'elpablo', opinion: 'no se no lo e juago' }
+    ]
   },
   getters: {
   },

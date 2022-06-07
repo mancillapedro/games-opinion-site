@@ -1,21 +1,24 @@
 <template>
-  <section class="row row-cols-1 row-cols-md-3 g-4">
-    <div
-      class="col"
-      v-for="(game, indexGame) in games"
-      :key="indexGame"
-      @click.stop="changeTitleModal(game.name)"
-    >
-      <card-game
-        :name="game.name"
-        :rating="game.rating"
-        :released="game.released"
-        :updated="game.updated"
-        :image="game.background_image"
-        :buttonModal="buttonModal"
-      />
+  <section>
+    <h1 class="text-center mb-5" v-text="`Lista de Juegos Disponibles`"/>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div
+        class="col"
+        v-for="(game, indexGame) in games"
+        :key="indexGame"
+        @click.stop="changeTitleModal(game.name)"
+      >
+        <card-game
+          :name="game.name"
+          :rating="game.rating"
+          :released="game.released"
+          :updated="game.updated"
+          :image="game.background_image"
+          :buttonModal="buttonModal"
+        />
+      </div>
+      <modal-with-form :idModal="idModal" :nameGame="titleModal" />
     </div>
-    <modal-with-form :idModal="idModal" :nameGame="titleModal" />
   </section>
 </template>
 <script>
@@ -31,14 +34,14 @@ export default {
   },
   data() {
     return {
-      idModal:'ModalWithForm',
+      idModal: "ModalWithForm",
       titleModal: "",
     };
   },
   computed: {
     ...mapState(["games"]),
-    buttonModal(){
-      return `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#${this.idModal}">Opinar</button>`
+    buttonModal() {
+      return `<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#${this.idModal}">Opinar</button>`;
     },
   },
   methods: {
