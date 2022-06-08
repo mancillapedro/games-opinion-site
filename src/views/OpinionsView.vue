@@ -23,7 +23,7 @@
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">
-            <strong>Opinion: </strong> {{ opinion.opinion }}
+            <p><strong>Opinion: </strong>{{ opinion.opinion }}</p>
           </div>
         </div>
       </div>

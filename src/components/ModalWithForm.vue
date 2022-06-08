@@ -16,7 +16,6 @@
             data-bs-dismiss="modal"
             aria-label="Close"
             @click.stop="clearInputs"
-
           />
         </div>
         <div class="modal-body">
@@ -30,7 +29,13 @@
             v-text="`Cerrar`"
             @click.stop="clearInputs"
           />
-          <button type="submit" class="btn btn-primary" v-text="`Guardar`" />
+          <button
+            type="submit"
+            class="btn btn-primary"
+            v-text="`Guardar`"
+            v-bind="validateInput && { 'data-bs-dismiss': 'modal' }"
+            :disabled="!validateInput"
+          />
         </div>
       </form>
     </div>
@@ -38,6 +43,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import BodyForm from "./BodyForm.vue";
 export default {
   components: { BodyForm },
@@ -45,26 +51,33 @@ export default {
   props: ["nameGame", "idModal"],
   data() {
     return {
-      nombre: null,
-      opinion: null,
+      nombre: "",
+      opinion: "",
     };
   },
   computed: {
     titleModal() {
       return `Escribe tu opinion para el juego: ${this.nameGame}`;
     },
+    validateInput() {
+      return /\w+/.test(this.nombre) && /\w+/.test(this.opinion);
+    },
   },
   methods: {
-    validateInput() {
-      console.log(this.nombre, this.opinion);
-    },
+    ...mapActions(["addOpinion"]),
+
     clearInputs() {
       this.nombre = "";
       this.opinion = "";
     },
     addOpinion() {
-      console.log(this.nombre, this.opinion);
-      this.clearInputs();
+      this.validateInput &&
+        this.$store.dispatch("addOpinion", {
+          name: this.nombre,
+          game: this.nameGame,
+          opinion: this.opinion,
+        }) &&
+        this.clearInputs();
     },
   },
   // watch: {},

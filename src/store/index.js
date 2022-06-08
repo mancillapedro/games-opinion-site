@@ -16,7 +16,13 @@ export default new Vuex.Store({
   getters: {
   },
   mutations: {
+    ADD_OPINION({ opinions }, opinion) { opinions.unshift(opinion) },
+    REMOVE_OPINION({ opinions }, index) { opinions.splice(index, 1) },
+    UPDATE_OPINION({ opinions }, {index, opinion}) { opinions.splice(index, 1, opinion) },
   },
   actions: {
+    addOpinion({commit}, opinion ){ commit('ADD_OPINION', opinion)},
+    removeOpinion({commit}, index ){ commit('REMOVE_OPINION', index)},
+    updateOpinion({commit}, params ){ commit('UPDATE_OPINION', params)}
   },
 })
