@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
 import BodyForm from "./BodyForm.vue";
+
 export default {
   components: { BodyForm },
   name: "ModalWithForm",
@@ -64,8 +64,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["addOpinion"]),
-
     clearInputs() {
       this.nombre = "";
       this.opinion = "";

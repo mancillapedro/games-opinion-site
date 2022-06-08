@@ -4,34 +4,32 @@
     <main class="container-fluid px-3 px-md-5">
       <router-view />
     </main>
-    <div
-      class="
-        alert alert-warning alert-dismissible
-        fade
-        show
-        fixed-bottom
-        max-content
-        ms-auto
-        me-3
-      "
-      role="alert"
-    >
-      <strong>Holy guacamole!</strong> You should check in on some of those
-      fields below.
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-      ></button>
-    </div>
+    <footer-component/>
   </div>
 </template>
 <script>
+import { mapActions, mapState } from "vuex";
+import FooterComponent from './components/FooterComponent.vue';
 import NavbarComponent from "./components/NavbarComponent.vue";
+
 export default {
-  components: { NavbarComponent },
+  components: { NavbarComponent, FooterComponent },
   name: "App",
+  computed:{
+    ...mapState(['opinions'])
+  },
+  methods: {
+    ...mapActions(["getGames", "initializeStore"]),
+  },
+  watch: {
+    opinions(newValue){
+      localStorage.setItem('opinions', JSON.stringify(newValue));
+    }
+  },
+  created() {
+    this.getGames();
+    this.initializeStore();
+  },
 };
 </script>
 <style lang="scss">
@@ -43,7 +41,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.max-content{
+.max-content {
   width: max-content;
 }
 </style>

@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { /*mapActions,*/ mapState } from "vuex";
 export default {
   name: "OpinionsManageView",
   // props: {},
@@ -56,7 +56,7 @@ export default {
     ...mapState(["opinions"]),
   },
   methods: {
-    ...mapActions(["removeOpinion"]),
+    // ...mapActions(["removeOpinion"]),
     removeOpinion(index) {
       confirm("confirma?") && this.$store.dispatch("removeOpinion", index);
     },

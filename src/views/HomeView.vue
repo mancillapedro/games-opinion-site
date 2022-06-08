@@ -4,8 +4,8 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div
         class="col"
-        v-for="(game, indexGame) in games"
-        :key="indexGame"
+        v-for="game in games"
+        :key="game.id"
         @click.stop="changeTitleModal(game.name)"
       >
         <card-game
