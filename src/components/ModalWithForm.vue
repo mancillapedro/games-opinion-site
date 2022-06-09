@@ -60,7 +60,8 @@ export default {
       return `Escribe tu opinion para el juego: ${this.nameGame}`;
     },
     validateInput() {
-      return /\w+/.test(this.nombre) && /\w+/.test(this.opinion);
+      // return /\w+/.test(this.nombre) && /\w+/.test(this.opinion);
+      return [this.nombre, this.opinion].every(text => /\w+/.test(text))
     },
   },
   methods: {

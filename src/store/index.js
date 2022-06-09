@@ -6,8 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     games: [],
-    // { game: 'elgtaX', name: 'pedro', opinion: 'weno el juego' },
-    opinions: []
+    opinions: [/* { game: String, name: String, opinion: String }, */]
   },
   getters: {
   },
