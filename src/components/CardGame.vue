@@ -34,4 +34,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+img{
+  height: 30vh;
+  object-fit: cover;
+  object-position: top;
+}
+
 </style>

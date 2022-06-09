@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1 class="text-center mb-5" v-text="`Lista de Juegos Disponibles`"/>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-3 g-2 g-md-5">
       <div
         class="col"
         v-for="game in games"

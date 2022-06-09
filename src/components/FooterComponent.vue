@@ -1,5 +1,5 @@
 <template>
-  <div id="FooterComponent">
+  <div v-if="false" id="FooterComponent">
     <div
       class="
         alert alert-warning alert-dismissible

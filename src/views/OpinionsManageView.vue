@@ -13,32 +13,40 @@
       role="alert"
       v-text="`No existen opiniones por administrar.`"
     />
+    <update-opinion-view v-if="updateForm.show" :index="newindex"/>
   </section>
 </template>
 
 <script>
 import TableManageOpinions from "@/components/TableManageOpinions.vue";
 import { mapState } from "vuex";
+import UpdateOpinionView from './UpdateOpinionView.vue';
 
 export default {
-  components: { TableManageOpinions },
+  components: { TableManageOpinions, UpdateOpinionView },
   name: "OpinionsManageView",
   // props: {},
   data() {
     return {
-      showForm: false,
+      updateForm: {
+        show: false,
+        indexOpinion: null,
+      },
     };
   },
   computed: {
     ...mapState(["opinions"]),
+    newindex(){
+      return this.updateForm.indexOpinion
+    }
   },
   methods: {
     removeOpinion(index) {
       confirm("confirma?") && this.$store.dispatch("removeOpinion", index);
     },
     updateOpinion(index) {
-      // confirm("confirma?") && this.$store.dispatch("removeOpinion", index);
-      console.log(index);
+      this.updateForm.show = true
+      this.updateForm.indexOpinion = index
     },
   },
   // watch: {},

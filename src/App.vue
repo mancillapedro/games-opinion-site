@@ -1,30 +1,23 @@
 <template>
   <div id="app">
     <navbar-component />
-    <main class="container-fluid px-3 px-md-5">
+    <main class="container">
       <router-view />
     </main>
-    <footer-component/>
+    <footer-component />
   </div>
 </template>
+
 <script>
-import { mapActions, mapState } from "vuex";
-import FooterComponent from './components/FooterComponent.vue';
+import { mapActions } from "vuex";
+import FooterComponent from "./components/FooterComponent.vue";
 import NavbarComponent from "./components/NavbarComponent.vue";
 
 export default {
   components: { NavbarComponent, FooterComponent },
   name: "App",
-  computed:{
-    ...mapState(['opinions'])
-  },
   methods: {
     ...mapActions(["getGames", "initializeStore"]),
-  },
-  watch: {
-    opinions(newValue){
-      localStorage.setItem('opinions', JSON.stringify(newValue));
-    }
   },
   created() {
     this.getGames();
@@ -32,6 +25,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss">
 @import "@/assets/custom-vars";
 @import "~bootstrap/scss/bootstrap";
@@ -43,6 +37,6 @@ export default {
   min-height: 100vh;
 }
 .max-content {
-  width: max-content;
+  max-width: max-content;
 }
 </style>
