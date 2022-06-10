@@ -5,30 +5,16 @@ import HomeView from '../views/HomeView.vue'
 const notFound = () => import(/* webpackChunkName: "notFound" */ '../views/NotFound.vue')
 const Opinions = () => import(/* webpackChunkName: "opinionsView" */ '../views/OpinionsView.vue')
 const OpinionsManage = () => import(/* webpackChunkName: "opinionsManageView" */ '../views/OpinionsManageView.vue')
+const OpinionNew = () => import(/* webpackChunkName: "opinionsNew" */ '../views/OpinionNewView.vue')
+const OpinionEdit = () => import(/* webpackChunkName: "opinionsEdit" */ '../views/OpinionEditView.vue')
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path:'/opinions',
-    name: 'opinions',
-    component: Opinions
-  },
-  {
-    path:'/opinions/manage',
-    name: 'opinionsManage',
-    component: OpinionsManage
-  },
-  {
-    path: '*',
-    name: 'notFound',
-    component: notFound
-  },
+  { path: '/', component: HomeView, children: [{ path: '', name: 'opinionNew', component: OpinionNew }] },
+  { path: '/opinions', name: 'opinions', component: Opinions },
+  { path: '/opinions/manage', component: OpinionsManage, children: [{ path: '', name: 'opinionEdit', component: OpinionEdit }] },
+  { path: '*', name: 'notFound', component: notFound },
 ]
 
 const router = new VueRouter({

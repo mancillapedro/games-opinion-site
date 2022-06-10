@@ -39,24 +39,15 @@
 
 <script>
 import { mapState } from "vuex";
+
 export default {
   name: "OpinionsView",
-  // props: {},
-  // data(){}
-  computed: {
-    ...mapState(["opinions"]),
-  },
+  computed: { ...mapState(["opinions"]) },
   methods: {
     accordionButton(name, game) {
       return `Opinión creada por: ${name}. Para el juego: ${game}`;
     },
   },
-  // watch: {},
-  // components: {},
-  // mixins: [],
-  // filters: {},
-  // -- Lifecycle Methods
-  // -- End Lifecycle Methods
 };
 </script>
 

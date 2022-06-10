@@ -1,15 +1,15 @@
 <template>
   <div
     class="modal fade"
-    :id="idModal"
+    id="OpinionNew"
     tabindex="-1"
-    :aria-labelledby="idModal + 'Label'"
+    aria-labelledby="OpinionNewLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog">
       <form class="modal-content" @submit.prevent="addOpinion">
         <div class="modal-header">
-          <h5 class="modal-title" :id="idModal + 'Label'" v-text="titleModal" />
+          <h5 class="modal-title" id="OpinionNewLabel" v-text="titleModal" />
           <button
             type="button"
             class="btn-close"
@@ -43,25 +43,22 @@
 </template>
 
 <script>
-import BodyForm from "./BodyForm.vue";
+import BodyForm from "@/components/BodyForm.vue";
 
 export default {
   components: { BodyForm },
   name: "ModalWithForm",
   props: ["nameGame", "idModal"],
-  data() {
-    return {
-      nombre: "",
-      opinion: "",
-    };
-  },
+  data: () => ({
+    nombre: "",
+    opinion: "",
+  }),
   computed: {
     titleModal() {
       return `Escribe tu opinion para el juego: ${this.nameGame}`;
     },
     validateInput() {
-      // return /\w+/.test(this.nombre) && /\w+/.test(this.opinion);
-      return [this.nombre, this.opinion].every(text => /\w+/.test(text))
+      return /\w+/.test(this.nombre) && /\w+/.test(this.opinion);
     },
   },
   methods: {
@@ -79,14 +76,5 @@ export default {
         this.clearInputs();
     },
   },
-  // watch: {},
-  // components: {},
-  // mixins: [],
-  // filters: {},
-  // -- Lifecycle Methods
-  // -- End Lifecycle Methods
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <header id="NavbarComponent" class="mb-5">
+  <header id="NavbarComponent" class="mb-5  sticky-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <router-link to="/" v-text="`Games Opinions`" class="navbar-brand" />
@@ -20,10 +20,18 @@
               <router-link to="/" class="nav-link" v-text="`Home`" />
             </li>
             <li class="nav-item">
-              <router-link to="/opinions" class="nav-link" v-text="`Opiniones`" />
+              <router-link
+                to="/opinions"
+                class="nav-link"
+                v-text="`Opiniones`"
+              />
             </li>
             <li class="nav-item">
-              <router-link to="/opinions/manage" class="nav-link" v-text="`Administración`" />
+              <router-link
+                to="/opinions/manage"
+                class="nav-link"
+                v-text="`Administración`"
+              />
             </li>
           </ul>
         </div>
@@ -33,20 +41,5 @@
 </template>
 
 <script>
-export default {
-  name: "NavbarComponent",
-  // props: {},
-  // data(){}
-  // computed: {},
-  // methods: {}
-  // watch: {},
-  // components: {},
-  // mixins: [],
-  // filters: {},
-  // -- Lifecycle Methods
-  // -- End Lifecycle Methods
-};
+export default { name: "NavbarComponent" };
 </script>
-
-<style lang="scss" scoped>
-</style>

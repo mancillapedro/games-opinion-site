@@ -4,12 +4,13 @@
     <body-form :nombre.sync="name" :opinion.sync="opinion" />
     <button
       type="button"
-      class="btn btn-secondary"
+      class="btn btn-primary"
       v-text="`Regresar`"
+      @click="volver"
     />
     <button
       type="submit"
-      class="btn btn-primary"
+      class="btn btn-info"
       v-text="`Guardar`"
       :disabled="!validateInput"
     />
@@ -24,17 +25,11 @@ export default {
   components: { BodyForm },
   name: "UpdateOpinionView",
   props: ["index"],
-  data() {
-    return {
-      name: "",
-      opinion: "",
-      game: "",
-    };
-  },
+  data: () => ({ name: "", opinion: "", game: "" }),
   computed: {
     ...mapGetters(["opinionByIndex"]),
     validateInput() {
-      return [this.name, this.opinion].every((text) => /\w+/.test(text));
+      return /\w+/.test(this.name) && /\w+/.test(this.opinion);
     },
   },
   methods: {
@@ -44,9 +39,8 @@ export default {
       this.opinion = opinion;
       this.game = game;
     },
-    clearInputs() {
-      this.name = "";
-      this.opinion = "";
+    volver() {
+      this.$emit("volver", true);
     },
     updateOpinion() {
       this.validateInput &&
@@ -57,8 +51,8 @@ export default {
             game: this.game,
             opinion: this.opinion,
           },
-        }) &&
-        this.clearInputs();
+        })
+      this.volver();
     },
   },
   watch: {
@@ -66,16 +60,8 @@ export default {
       this.setOpinion();
     },
   },
-  // components: {},
-  // mixins: [],
-  // filters: {},
   created() {
     this.setOpinion();
   },
-  // -- Lifecycle Methods
-  // -- End Lifecycle Methods
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

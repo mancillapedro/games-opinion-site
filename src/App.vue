@@ -16,9 +16,7 @@ import NavbarComponent from "./components/NavbarComponent.vue";
 export default {
   components: { NavbarComponent, FooterComponent },
   name: "App",
-  methods: {
-    ...mapActions(["getGames", "initializeStore"]),
-  },
+  methods: { ...mapActions(["getGames", "initializeStore"]) },
   created() {
     this.getGames();
     this.initializeStore();
@@ -38,5 +36,8 @@ export default {
 }
 .max-content {
   max-width: max-content;
+}
+.active {
+  pointer-events: none;
 }
 </style>

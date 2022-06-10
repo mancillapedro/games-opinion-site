@@ -1,6 +1,7 @@
 <template>
   <div class="table-responsive-lg">
-    <table id="TableManageOpinions" class="table table-borderless table-hover">
+    <h1 class="text-center" v-text="`Administrando la Lista de Opiniones`" />
+    <table v-if="opinions[0]" id="TableManageOpinions" class="table table-borderless table-hover">
       <thead>
         <tr>
           <th
@@ -9,14 +10,10 @@
             :key="indexTitle"
             v-text="title"
           />
-          <th scope="col" />
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="(opinion, indexOpinion) in opinions"
-          :key="indexOpinion"
-        >
+        <tr v-for="(opinion, indexOpinion) in opinions" :key="indexOpinion">
           <th scope="row" v-text="indexOpinion + 1" />
           <td v-text="opinion.name" />
           <td v-text="opinion.game" />
@@ -30,7 +27,7 @@
             />
             <button
               type="button"
-              class="btn btn-primary"
+              class="btn btn-info"
               v-text="`Editar`"
               @click="editar(indexOpinion)"
             />
@@ -38,24 +35,20 @@
         </tr>
       </tbody>
     </table>
+    <div
+      v-else
+      class="alert alert-danger"
+      role="alert"
+      v-text="`No existen opiniones por administrar.`"
+    />
   </div>
 </template>
 
 <script>
 export default {
   name: "TableManageOpinions",
-  props: {
-    opinions: {
-      type: Array,
-      require: true,
-    },
-  },
-  data() {
-    return {
-      headTable: ["#", "Persona", "Juego", "Opinion"],
-    };
-  },
-  // computed: {},
+  props: ["opinions"],
+  data: () => ({ headTable: ["#", "Persona", "Juego", "Opinion", ""] }),
   methods: {
     eliminar(index) {
       this.$emit("eliminar", index);
@@ -64,14 +57,5 @@ export default {
       this.$emit("editar", index);
     },
   },
-  // watch: {},
-  // components: {},
-  // mixins: [],
-  // filters: {},
-  // -- Lifecycle Methods
-  // -- End Lifecycle Methods
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

@@ -7,6 +7,7 @@
         v-text="`Nombre:`"
       />
       <input
+        required
         type="text"
         class="form-control"
         id="exampleFormControlInput1"
@@ -21,6 +22,7 @@
         v-text="`Opiniones:`"
       />
       <textarea
+        required
         class="form-control"
         id="exampleFormControlTextarea1"
         rows="3"
@@ -34,8 +36,7 @@
 <script>
 export default {
   name: "BodyForm",
-  props:['nombre', 'opinion'],
-  // data() {   return {};  },
+  props: ["nombre", "opinion"],
   computed: {
     inputNombre: {
       get() {
@@ -54,15 +55,5 @@ export default {
       },
     },
   },
-  // methods: {}
-  // watch: {},
-  // components: {},
-  // mixins: [],
-  // filters: {},
-  // -- Lifecycle Methods
-  // -- End Lifecycle Methods
 };
 </script>
-
-<style lang="scss" scoped>
-</style>
