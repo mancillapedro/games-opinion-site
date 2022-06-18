@@ -73,13 +73,13 @@ export default {
     }
   }
   #gatito {
-    animation: flotar 6s ease-in-out infinite;
+    animation: flotar 8s ease-in-out infinite;
   }
   #sombra {
     left: -40px;
     top: 25px;
     filter: grayscale(100%) brightness(0%);
-    animation: sombraFlotar 6s ease-in-out infinite;
+    animation: sombraFlotar 8s ease-in-out infinite;
     transform: translatey(36px);
   }
   #fondo {

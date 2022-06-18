@@ -9,7 +9,7 @@
       <li class="list-group-item" v-text="'Released: ' + released" />
       <li class="list-group-item" v-text="'Updated: ' + updated" />
     </ul>
-    <div class="card-body">
+    <div class="card-body align-self-center">
       <button
         type="button"
         class="btn btn-primary"

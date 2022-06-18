@@ -1,5 +1,5 @@
 <template>
-  <section id="Home">
+  <section id="Home" class="pb-5">
     <h1 class="text-center mb-5" v-text="`Lista de Juegos Disponibles`" />
     <div class="row row-cols-1 row-cols-md-3 g-2 g-md-5">
       <div
