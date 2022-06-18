@@ -25,12 +25,18 @@ export default new Vuex.Store({
   },
   actions: {
     async getGames({ commit }) {
-      const mapGame = ({ id, name, rating, released, updated, background_image }) => ({ id, name, rating, released, updated, background_image })
+      const mapGame = ({ id, name, rating, released, updated, background_image }) => ({
+        id,
+        name,
+        rating,
+        released: (new Date(released)).toLocaleDateString('es-cl'),
+        updated: (new Date(updated)).toLocaleDateString('es-cl'),
+        background_image
+      })
       try {
         const response = await fetch('https://api.rawg.io/api/games?key=5ac5b5aaba034ae19e0d447a00b4203c')
-        if (!response.ok) throw ('errorenpeticion')
-        const games = (await response.json()).results.map(game => mapGame(game))
-        commit('GET_GAMES', games)
+        if (!response.ok) throw ('Error en API')
+        commit('GET_GAMES', (await response.json()).results.map(game => mapGame(game)))
       } catch (error) { alert(error) }
     },
     initializeStore({ commit }) { commit('INITIALIZE_STORE') },
