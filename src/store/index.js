@@ -9,7 +9,8 @@ export default new Vuex.Store({
     opinions: [/* { game: String, name: String, opinion: String }, */]
   },
   getters: {
-    opinionByIndex: (state) => (index) => state.opinions[index] || false
+    opinionByIndex: (state) => (index) => state.opinions[index] || false,
+    opinionsChange: (state) => ({ size: state.opinions.length })
   },
   mutations: {
     GET_GAMES(state, json) { state.games = json },

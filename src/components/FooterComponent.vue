@@ -1,44 +1,57 @@
 <template>
-  <div v-if="false" id="FooterComponent">
-    <div
-      class="
-        alert alert-warning alert-dismissible
-        fade
-        show
-        fixed-bottom
-        max-content
-        ms-auto
-        me-3
-      "
-      role="alert"
-    >
-      <strong>Holy guacamole!</strong> You should check in on some of those
-      fields below.
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-      ></button>
-    </div>
+  <div
+    v-if="alert"
+    id="FooterComponent"
+    class="
+      alert alert-dismissible
+      fade
+      show
+      fixed-bottom
+      max-content
+      ms-auto
+      me-3
+    "
+    :class="`alert-${type}`"
+    role="alert"
+  >
+    {{ message }}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+      @click="alert = !alert"
+    />
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "FooterComponent",
-  // props: {},
-  // data(){},
-  // computed: {},
-  // methods: {},
-  // watch: {},
-  // components: {},
-  // mixins: [],
-  // filters: {},
-  // -- Lifecycle Methods
-  // -- End Lifecycle Methods
+  data: () => ({
+    alert: false,
+    type: "",
+    message: "",
+  }),
+  computed: {
+    ...mapGetters(["opinionsChange"]),
+  },
+  watch: {
+    opinionsChange(newValue, oldValue) {
+      this.alert = true;
+      if (newValue.size > oldValue.size) {
+        this.type = "success";
+        this.message = "Nueva opinion agregada!";
+      } else if (newValue.size < oldValue.size) {
+        this.type = "danger";
+        this.message = "La opinion fue eliminada con éxito!";
+      } else {
+        this.type = "warning";
+        this.message = "La opinion fue editada con éxito!";
+      }
+    },
+  },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>
