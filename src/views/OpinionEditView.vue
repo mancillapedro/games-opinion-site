@@ -10,9 +10,9 @@
     />
     <button
       type="submit"
-      class="btn btn-info"
+      class="btn btn-info ms-5"
       v-text="`Guardar`"
-      :disabled="!validateInput"
+      :disabled="btnDisabled || !validateInput"
     />
   </form>
 </template>
@@ -25,7 +25,7 @@ export default {
   components: { BodyForm },
   name: "UpdateOpinionView",
   props: ["index"],
-  data: () => ({ name: "", opinion: "", game: "" }),
+  data: () => ({ name: "", opinion: "", game: "", btnDisabled: true }),
   computed: {
     ...mapGetters(["opinionByIndex"]),
     validateInput() {
@@ -33,6 +33,10 @@ export default {
     },
   },
   methods: {
+    changeDisabled(oldValue) {
+      if (!oldValue) return (this.btnDisabled = true);
+      this.btnDisabled = false;
+    },
     setOpinion() {
       const { name, opinion, game } = this.opinionByIndex(this.index);
       this.name = name;
@@ -51,13 +55,19 @@ export default {
             game: this.game,
             opinion: this.opinion,
           },
-        })
+        });
       this.volver();
     },
   },
   watch: {
     index() {
       this.setOpinion();
+    },
+    opinion(_, oldValue) {
+      this.changeDisabled(oldValue);
+    },
+    name(_, oldValue) {
+      this.changeDisabled(oldValue);
     },
   },
   created() {
