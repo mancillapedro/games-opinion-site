@@ -8,7 +8,7 @@
             alt=""
             width="30"
             height="24"
-            class="d-inline-block align-text-top text-white"
+            class="d-inline-block align-text-top"
           />
           Games Opinions
         </router-link>
