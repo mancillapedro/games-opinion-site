@@ -25,7 +25,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/custom-vars";
 @import "~bootstrap/scss/bootstrap";
 
 #app {
