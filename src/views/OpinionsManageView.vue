@@ -21,7 +21,7 @@ export default {
   computed: { ...mapState(["opinions"]) },
   methods: {
     removeOpinion(index) {
-      confirm("confirma?") && this.$store.dispatch("removeOpinion", index);
+      confirm("¿Eliminar opinion?") && this.$store.dispatch("removeOpinion", index);
     },
     updateOpinion(index) {
       this.showEdit = true;
