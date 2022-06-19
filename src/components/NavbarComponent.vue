@@ -1,8 +1,17 @@
 <template>
-  <header id="NavbarComponent" class="mb-5  sticky-top">
+  <header id="NavbarComponent" class="mb-5 sticky-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <router-link to="/" v-text="`Games Opinions`" class="navbar-brand" />
+        <router-link to="/" class="navbar-brand">
+          <img
+            src="@/assets/headset-solid.svg"
+            alt=""
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top text-white"
+          />
+          Games Opinions
+        </router-link>
         <button
           class="navbar-toggler"
           type="button"
